@@ -27,6 +27,15 @@ def update_author(author_name, updated_author_name):
         print("author is not in the list")
 
 
+def delete_author(author_name):
+    global authors 
+
+    if author_name in authors:
+        authors = authors.replace(author_name + ',', "")
+    else:
+        print("CLient is not in client list")
+
+
 def _print_welcome():
     print("WELCOME TO LECTURE REGISTRY")
     print('*'*50)
@@ -52,7 +61,10 @@ if __name__ == '__main__':
         create_lecture_entry(author_name)
         list_authors()
     elif lecture_option == 2:
-        print("Print option WIP")
+        list_authors()
+        author_name = _get_author_name()
+        delete_author(author_name)
+        list_authors()
     elif lecture_option == 3:
         list_authors()
         author_name = _get_author_name()
