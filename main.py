@@ -1,24 +1,45 @@
-writers = 'Stephen King, '
+authors = 'Stephen King, '
 
-def create_book_entry(writer_name):
-    global writers 
-    writers += writer_name
-    _add_coma()
+def create_lecture_entry(authors_name):
+    global authors
+    if author_name not in authors:
+        authors += author_name
+        _add_coma()
+    else:
+        print("This author is already in the authors list")
 
 
 def _add_coma():
-    global writers 
-    writers += ','
+    global authors 
+    authors += ','
 
 
-def list_writers():
-    global writers
-    print(writers)
+def list_authors():
+    global authors
+    print(authors)
+
+
+def _print_welcome():
+    print("WELCOME TO LECTURE REGISTRY")
+    print('*'*50)
+    print("What do you want to do today?")
 
 
 if __name__ == '__main__':
-    list_writers()
-    
-    create_book_entry('Joe Hill')
 
-    list_writers()
+    _print_welcome()
+    
+    lecture_option = int(input("""Select your option:
+        1. Add lecture
+        2. delete lecture
+        : """))
+
+    if lecture_option == 1:
+        author_name = str(input("what is the name of the author? "))
+        create_lecture_entry(author_name)
+        list_authors()
+    elif lecture_option == 2:
+        print("Print option WIP")
+    else:
+        print("Nothing else to do")
+    
