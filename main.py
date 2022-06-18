@@ -1,6 +1,6 @@
-authors = 'Stephen King, '
+authors = 'Stephen King, joe, '
 
-def create_lecture_entry(authors_name):
+def create_lecture_entry(author_name):
     global authors
     if author_name not in authors:
         authors += author_name
@@ -19,10 +19,22 @@ def list_authors():
     print(authors)
 
 
+def update_author(author_name, updated_author_name):
+    global authors
+    if author_name in authors:
+        authors = authors.replace(author_name + ',', updated_author_name + ',')
+    else:
+        print("author is not in the list")
+
+
 def _print_welcome():
     print("WELCOME TO LECTURE REGISTRY")
     print('*'*50)
     print("What do you want to do today?")
+
+
+def _get_author_name():
+    return str(input("what is the name of the author? "))
 
 
 if __name__ == '__main__':
@@ -32,14 +44,21 @@ if __name__ == '__main__':
     lecture_option = int(input("""Select your option:
         1. Add lecture
         2. delete lecture
+        3. Update lecture
         : """))
 
     if lecture_option == 1:
-        author_name = str(input("what is the name of the author? "))
+        author_name = _get_author_name()
         create_lecture_entry(author_name)
         list_authors()
     elif lecture_option == 2:
         print("Print option WIP")
+    elif lecture_option == 3:
+        list_authors()
+        author_name = _get_author_name()
+        updated_author_name = str(input("what is the updated name of the author? "))
+        update_author(author_name, updated_author_name)
+        list_authors()
     else:
         print("Nothing else to do")
     
